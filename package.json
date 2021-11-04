@@ -1,0 +1,29 @@
+{
+  "name": "apimessages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "errorhandler": "^1.5.1",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-validator": "^6.13.0",
+    "knex": "^0.95.12",
+    "moment": "^2.29.1",
+    "natives": "^1.1.6",
+    "oracledb": "^5.2.0",
+    "sqlite3": "^5.0.2",
+    "winston": "^3.3.3"
+  },
+  "type": "module"
+}
