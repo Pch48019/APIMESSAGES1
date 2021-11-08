@@ -4,6 +4,7 @@ import { router } from './router.js';
 import oracledb from 'oracledb';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import { init } from './dal.js';
 
 
 
@@ -17,19 +18,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/messages', router);
 
 
-app.get('/', (req, res) => {
-    res.json('This is home page.')
-    res.end();
-});
-
 app.all('*', (req, res) => {
-    res.json('The page not found.')
+    res.status(404).json({
+        status: faild,
+        payload: 'The page not found.'
+    })
     res.end();
 });
 
 const startApi = async () => {
     try {
-        OracleClient();
+        try {
+            await init(); 
+        } catch (err) {
+            logger.error(err.message);
+            return;
+        }
+        //OracleClient();
         app.listen(process.env.PORT, () => {
             logger.info('Server running, Express is listening...', process.env.PORT);
         })
@@ -41,17 +46,16 @@ const startApi = async () => {
 
 }
 
-const OracleClient = () => {
-    try {
-        //if (process.platform === 'win32')
-        oracledb.initOracleClient({ libDir: process.env.LIBDIR });
-    }
-    catch (err) {
-       console.error('Whoops!');
-        console.error(err);
-        return;
-    }
-}
+// const OracleClient = () => {
+//     try {
+//         oracledb.initOracleClient({ libDir: process.env.LIBDIR });
+//     }
+//     catch (err) {
+//         console.error('Whoops!');
+//         console.error(err);
+//         return;
+//     }
+// }
 
 startApi();
 
